@@ -3,5 +3,5 @@ from authentication.models import User
 # Create your models here.
 
 class Shopping_list(models.Model):
-    ingredient = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ingredient = models.CharField(max_length=255)
