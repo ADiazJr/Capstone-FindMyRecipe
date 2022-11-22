@@ -5,16 +5,16 @@ from .models import Favorite_recipes
 from .serializers import Favorite_recipesSerializer
 from django.shortcuts import get_object_or_404
 
-@api_view(["GET, POST"])
+@api_view(["GET", "POST"])
 @permission_classes([IsAuthenticated])
 def favorite_recipes_control(request):
     if request.method == "GET":
         favorite_recipe = Favorite_recipes.objects.all()
-        serializer = Favorite_recipesSerializer(favorite_recipe)
+        serializer = Favorite_recipesSerializer(favorite_recipe, many=True)
         return Response(serializer.data)
 
     elif request.method == "POST":
         serializer = Favorite_recipesSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save(user=request.user)
         return Response(serializer.data)
