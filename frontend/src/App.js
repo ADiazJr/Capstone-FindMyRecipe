@@ -17,6 +17,7 @@ import Footer from "./components/Footer/Footer";
 import PrivateRoute from "./utils/PrivateRoute";
 import axios from "axios";
 import { useState } from "react";
+import IngredientSearchPage from "./pages/IngredientSearchPage/IngredientSearchPage";
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/search" element={<SearchPage recipes={recipes} />} />
+        <Route path="/ingredient_search" element={<IngredientSearchPage />} />
       </Routes>
       <Footer />
     </div>
