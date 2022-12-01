@@ -18,11 +18,12 @@ import PrivateRoute from "./utils/PrivateRoute";
 import axios from "axios";
 import { useState } from "react";
 import IngredientSearchPage from "./pages/IngredientSearchPage/IngredientSearchPage";
+import RecipePage from "./pages/RecipePage/RecipePage";
 
 function App() {
 
+  const [selectedRecipe, setSelectedRecipe] = useState({})
   const [recipes, setRecipes] = useState([])
-
   let navigate = useNavigate();
 
   async function getRecipes(search){
@@ -50,7 +51,8 @@ function App() {
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/search" element={<SearchPage recipes={recipes} />} />
+        <Route path="/read/:recipeId" element={<RecipePage selectedRecipe={selectedRecipe} setSelectedRecipe={setSelectedRecipe} />} />
+        <Route path="/search" element={<SearchPage recipes={recipes} setSelectedRecipe={setSelectedRecipe} />} />
         <Route path="/ingredient_search" element={<IngredientSearchPage />} />
       </Routes>
       <Footer />

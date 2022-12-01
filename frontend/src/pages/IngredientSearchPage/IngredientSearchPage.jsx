@@ -84,7 +84,7 @@ const IngredientSearchPage = (props) => {
                         </div>
                     ))}
                 </form>
-                <button type="button" onClick={searchClick()}>Search</button>
+                <button type="button" onClick={searchClick}>Search</button>
             </div>
             <div>
                 <ul>
