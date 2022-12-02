@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import parse from 'html-react-parser';
 
 
 const RecipePage = (props) => {
@@ -35,7 +36,12 @@ const RecipePage = (props) => {
             {/* {recipeInfo.cuisines.length > 0 && 
             <p>Cuisines: {recipeInfo.cuisines}</p>
             }            */}
-            <p>{recipeInfo.summary}</p>
+            {recipeInfo.instructions && 
+            <p>{recipeInfo.instructions}</p>
+            }
+            {/* {recipeInfo.analyzedInstructions[0].steps[1].step} */}
+            {console.log(recipeInfo.summary)}
+            {recipeInfo.summary && parse(recipeInfo.summary)}
         </div>
      );
 }

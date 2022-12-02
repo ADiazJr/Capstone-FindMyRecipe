@@ -53,7 +53,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/read/:recipeId" element={<RecipePage selectedRecipe={selectedRecipe} setSelectedRecipe={setSelectedRecipe} />} />
         <Route path="/search" element={<SearchPage recipes={recipes} setSelectedRecipe={setSelectedRecipe} />} />
-        <Route path="/ingredient_search" element={<IngredientSearchPage />} />
+        <Route path="/ingredient_search" element={<IngredientSearchPage setSelectedRecipe={setSelectedRecipe} />} />
       </Routes>
       <Footer />
     </div>

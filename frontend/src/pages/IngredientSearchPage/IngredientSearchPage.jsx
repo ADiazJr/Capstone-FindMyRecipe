@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const IngredientSearchPage = (props) => {
 
+    let navigate = useNavigate();
     let searchList = [];
     const [recipes, setRecipes] = useState([])
     const [ingredientList, setIngredientList] = useState([
@@ -50,6 +52,12 @@ const IngredientSearchPage = (props) => {
         setRecipes(response.data)
      }
 
+     function handleClick(event, recipe){
+        event.preventDefault();
+        props.setSelectedRecipe(recipe);
+        navigate(`/read/${recipe.id}`);
+     }
+
 
     return (                                                      
         <div>
@@ -91,7 +99,7 @@ const IngredientSearchPage = (props) => {
                     {recipes.map((recipe) => {
                         return(
                             <li>
-                                <button>
+                                <button onClick={(e) => handleClick(e, recipe)} >
                                     <img src={recipe.image} alt="recipe"/>
                                     <p>{recipe.title}</p>
                                 </button>

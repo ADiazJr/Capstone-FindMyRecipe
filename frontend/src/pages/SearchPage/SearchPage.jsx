@@ -7,7 +7,7 @@ const SearchPage = (props) => {
     function handleClick(event, recipe){
         event.preventDefault();
         props.setSelectedRecipe(recipe);
-        navigate(`/read/${recipe.id}`)
+        navigate(`/read/${recipe.id}`);
     }
 
     
