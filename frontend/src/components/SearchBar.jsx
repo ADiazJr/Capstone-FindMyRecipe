@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 
 const SearchBar = (props) => {
 
+    const [user] = useAuth();
     let navigate = useNavigate();
     const [search, setSearch] = useState("");
 
@@ -13,7 +15,13 @@ const SearchBar = (props) => {
     }
 
     function handleClick(event){
+        event.preventDefault();
         navigate("/ingredient_search");
+    }
+
+    function handleFavorite(event){
+        event.preventDefault();
+        navigate("/favorite_recipes")
     }
 
     return ( 
@@ -28,6 +36,14 @@ const SearchBar = (props) => {
                     <button onClick={handleClick}>Ingredient Search</button>
                 </div>
             </form>
+            {!user ?
+            <p></p>:
+            <form>
+                <div>
+                    <button onClick={handleFavorite}>Favorite Recipes</button>
+                </div>
+            </form>
+            }
         </div>
      );
 }

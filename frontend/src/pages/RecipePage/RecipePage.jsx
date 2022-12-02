@@ -41,7 +41,7 @@ const RecipePage = (props) => {
             }
             {/* {recipeInfo.analyzedInstructions[0].steps[1].step} */}
             {console.log(recipeInfo.summary)}
-            {recipeInfo.summary && parse(recipeInfo.summary)}
+            <p>{recipeInfo.summary && parse(recipeInfo.summary)}</p>
         </div>
      );
 }

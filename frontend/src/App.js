@@ -19,6 +19,7 @@ import axios from "axios";
 import { useState } from "react";
 import IngredientSearchPage from "./pages/IngredientSearchPage/IngredientSearchPage";
 import RecipePage from "./pages/RecipePage/RecipePage";
+import FavoriteRecipesPage from "./pages/FavoriteRecipesPage/FavoriteRecipesPage";
 
 function App() {
 
@@ -49,6 +50,15 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/favorite_recipes"
+          element={
+            <PrivateRoute>
+              <FavoriteRecipesPage />
+            </PrivateRoute>
+          }
+        />
+
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/read/:recipeId" element={<RecipePage selectedRecipe={selectedRecipe} setSelectedRecipe={setSelectedRecipe} />} />
