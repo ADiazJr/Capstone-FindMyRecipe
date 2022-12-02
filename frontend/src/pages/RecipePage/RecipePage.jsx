@@ -7,6 +7,7 @@ const RecipePage = (props) => {
 
     useEffect(() => {
         getRecipeInformation();
+        summarySplit();
     }, [])
     
     const [recipeInfo, setRecipeInfo] = useState({})
@@ -19,6 +20,12 @@ const RecipePage = (props) => {
               }
             })
         setRecipeInfo(response.data)
+    }
+
+    function summarySplit(){
+        console.log(parse(recipeInfo.summary))
+        let parsed = parse(recipeInfo.summary);
+        parsed.split("Similar")
     }
     
     return ( 
@@ -40,7 +47,6 @@ const RecipePage = (props) => {
             <p>{recipeInfo.instructions}</p>
             }
             {/* {recipeInfo.analyzedInstructions[0].steps[1].step} */}
-            {console.log(recipeInfo.summary)}
             <p>{recipeInfo.summary && parse(recipeInfo.summary)}</p>
         </div>
      );

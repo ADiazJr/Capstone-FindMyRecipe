@@ -10,9 +10,15 @@ const FavoriteRecipesPage = (props) => {
     const [user, token] = useAuth();
 
     useEffect(() => {
-        favoriteRecipes();
+        if(recipes.length > 0){ 
         changeIdToRecipe();
+        }
+    }, [recipes])
+
+    useEffect(() =>{
+       favoriteRecipes();
     }, [])
+    
 
     async function favoriteRecipes(){
         let response = await axios.get(`http://127.0.0.1:8000/api/favorite_recipes/`, {
@@ -21,11 +27,15 @@ const FavoriteRecipesPage = (props) => {
             }
         })
         setRecipes(response.data)
+
     }
 
     console.log("recipes", recipes)
     function changeIdToRecipe(){
-        recipes.map(async (recipe) => {
+
+        let favoriteRecipeDetails = []
+        recipes.forEach(async (recipe) => {
+            console.log('recipe in map', recipe)
             let response = await axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipe.recipe_id}/information`, {
                 headers: {
                     "X-RapidAPI-Key": "1f1ce1238dmsh36abaf75fb5955cp1c20f7jsn99509f578ee6",
@@ -33,13 +43,12 @@ const FavoriteRecipesPage = (props) => {
                   }
 
                 })
-                if(recipeInfo.includes(recipe) === false){
-                    setRecipeInfo([...recipeInfo, response.data])
-                }
+                favoriteRecipeDetails.push(response.data)
         })
+        setRecipeInfo(favoriteRecipeDetails)
     }
 
-    console.log(recipeInfo)
+    console.log('recipeInfo', recipeInfo)
     return (
         <div>
             {!user ?
