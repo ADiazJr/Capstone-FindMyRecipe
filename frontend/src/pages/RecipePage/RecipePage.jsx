@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import parse from 'html-react-parser';
+import useAuth from "../../hooks/useAuth";
 
 
 const RecipePage = (props) => {
 
+    const [isFavorite, setIsFavorite] = useState(false)
+    const [user, token] = useAuth();
+    const [recipeInfo, setRecipeInfo] = useState({})
+
     useEffect(() => {
         getRecipeInformation();
-        summarySplit();
+        // summarySplit();
     }, [])
     
-    const [recipeInfo, setRecipeInfo] = useState({})
 
      async function getRecipeInformation(){
         let response = await axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${props.selectedRecipe.id}/information`, {
@@ -22,14 +26,35 @@ const RecipePage = (props) => {
         setRecipeInfo(response.data)
     }
 
-    function summarySplit(){
-        console.log(parse(recipeInfo.summary))
-        let parsed = parse(recipeInfo.summary);
-        parsed.split("Similar")
+    // function summarySplit(){
+    //     console.log(parse(recipeInfo.summary))
+    //     let parsed = parse(recipeInfo.summary);
+    //     parsed.split("Similar")
+    // }
+
+    // function favoriteCheck(){
+    //     let response = await axios.get
+    // }
+
+    async function handleClick(){
+        let response = await axios.post(`http://127.0.0.1:8000/api/favorite_recipes/`, {recipe_id : recipeInfo.id}, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+        if(response.status === 200){
+            console.log('succesfully posted recipe')
+            var e = document.getElementById("favorited");
+            e.disabled = true
+        }
     }
     
     return ( 
         <div>
+            {!user ?
+            <p></p>:
+            <button id="favorited" onClick={handleClick} >Add to Favorites</button>
+            }
             <h2>{recipeInfo.title}</h2>
             <img src={recipeInfo.image} alt="Selected Recipe" />
             {recipeInfo.vegetarian === true &&
