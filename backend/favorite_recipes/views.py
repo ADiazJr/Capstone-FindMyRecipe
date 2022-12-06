@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from .models import Favorite_recipes
 from .serializers import Favorite_recipesSerializer
 from django.shortcuts import get_object_or_404
+from rest_framework import status
 
 @api_view(["GET", "POST"])
 @permission_classes([IsAuthenticated])
@@ -18,3 +19,11 @@ def favorite_recipes_control(request):
         serializer.is_valid(raise_exception=True)
         serializer.save(user=request.user)
         return Response(serializer.data)
+
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def favorite_recipe_delete(request, recipe_id):
+    if request.method == "DELETE":
+        favorite_recipe = get_object_or_404(Favorite_recipes, recipe_id=recipe_id, user=request.user)
+        favorite_recipe.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
