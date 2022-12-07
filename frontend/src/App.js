@@ -20,6 +20,7 @@ import { useState } from "react";
 import IngredientSearchPage from "./pages/IngredientSearchPage/IngredientSearchPage";
 import RecipePage from "./pages/RecipePage/RecipePage";
 import FavoriteRecipesPage from "./pages/FavoriteRecipesPage/FavoriteRecipesPage";
+import ShoppingListPage from "./pages/ShoppingListPage/ShoppingListPage";
 
 function App() {
 
@@ -64,6 +65,7 @@ function App() {
         <Route path="/read/:recipeId" element={<RecipePage selectedRecipe={selectedRecipe} setSelectedRecipe={setSelectedRecipe} />} />
         <Route path="/search" element={<SearchPage recipes={recipes} setSelectedRecipe={setSelectedRecipe} />} />
         <Route path="/ingredient_search" element={<IngredientSearchPage setSelectedRecipe={setSelectedRecipe} />} />
+        <Route path='/shopping_list' element={<ShoppingListPage />} />
       </Routes>
       <Footer />
     </div>

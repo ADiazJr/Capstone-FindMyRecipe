@@ -10,49 +10,49 @@ const RecipePage = (props) => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [user, token] = useAuth();
     const [recipeInfo, setRecipeInfo] = useState({});
-
+    
     useEffect(() => {
         getRecipeInformation();
     }, [])
-
+    
     useEffect(() => {
         favoriteCheck();
     }, [recipeInfo])
     
-
-     async function getRecipeInformation(){
+    
+    async function getRecipeInformation(){
         let response = await axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${props.selectedRecipe.id}/information`, {
             headers: {
                 "X-RapidAPI-Key": "1f1ce1238dmsh36abaf75fb5955cp1c20f7jsn99509f578ee6",
                 "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-              }
-            });
-        setRecipeInfo(response.data);
-    }
-
-    // function summarySplit(){
-    //     console.log(parse(recipeInfo.summary))
-    //     let parsed = parse(recipeInfo.summary);
-    //     parsed.split("Similar")
-    // }
-
-    async function favoriteCheck(){
-        let response = await axios.get(`http://127.0.0.1:8000/api/favorite_recipes/`, {
-            headers: {
-                Authorization: "Bearer " + token
             }
         });
-        response.data.forEach(recipe => {
-            idList.push(recipe.recipe_id)
-        });
-        if(idList.includes(recipeInfo.id)){
-            setIsFavorite(true);
-        }
-        else{
-            setIsFavorite(false);
-        }
+        setRecipeInfo(response.data);
     }
-
+    
+    // function summarySplit(){
+        //     console.log(parse(recipeInfo.summary))
+        //     let parsed = parse(recipeInfo.summary);
+        //     parsed.split("Similar")
+        // }
+        
+        async function favoriteCheck(){
+            let response = await axios.get(`http://127.0.0.1:8000/api/favorite_recipes/`, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            });
+            response.data.forEach(recipe => {
+                idList.push(recipe.recipe_id)
+            });
+            if(idList.includes(recipeInfo.id)){
+                setIsFavorite(true);
+            }
+            else{
+                setIsFavorite(false);
+            }
+        }
+        
     async function handleAdd(){
         let response = await axios.post(`http://127.0.0.1:8000/api/favorite_recipes/`, {recipe_id : recipeInfo.id}, {
             headers: {
@@ -63,7 +63,7 @@ const RecipePage = (props) => {
             setIsFavorite(true);
         }
     }
-
+    
     async function handleDelete(){
         let response = await axios.delete(`http://127.0.0.1:8000/api/favorite_recipes/${recipeInfo.id}/`, {
             headers: {
@@ -75,20 +75,23 @@ const RecipePage = (props) => {
         }
     }
     
+    let ingredients = recipeInfo.extendedIngredients;
     return ( 
         <div>
-            {!user ?
-            <p></p>:
             <div>
-                {isFavorite ? 
+                {!user ?
+                <p></p>:
                 <div>
-                    <p>This Recipe is in your Favorites</p>
-                    <button onClick={handleDelete}>Remove from Favorites</button>
-                </div>:
-                <button onClick={handleAdd} >Add to Favorites</button>
+                    {isFavorite ? 
+                    <div>
+                        <p>This Recipe is in your Favorites</p>
+                        <button onClick={handleDelete}>Remove from Favorites</button>
+                    </div>:
+                    <button onClick={handleAdd} >Add to Favorites</button>
+                    }
+                </div>
                 }
             </div>
-            }
             <h2>{recipeInfo.title}</h2>
             <img src={recipeInfo.image} alt="Selected Recipe" />
             {recipeInfo.vegetarian === true &&
@@ -99,9 +102,15 @@ const RecipePage = (props) => {
             }
             <p>Ready in {recipeInfo.readyInMinutes} Minutes</p>
             <p>Servings: {recipeInfo.servings}</p>
-            {/* {recipeInfo.cuisines.length > 0 && 
-            <p>Cuisines: {recipeInfo.cuisines}</p>
-            }            */}
+            <h3>Ingredients</h3>
+            {ingredients.map((ingredient) => {
+                return(
+                    <div>
+                        <p>Name: {ingredient.name}</p>
+                        <p>Amount: {ingredient.amount}{ingredient.unit} </p>
+                    </div>
+                )
+            })}
             {recipeInfo.instructions && 
             <p>{recipeInfo.instructions}</p>
             }
