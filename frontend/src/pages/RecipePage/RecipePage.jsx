@@ -50,6 +50,7 @@ const RecipePage = (props) => {
             });
             response.data.forEach(recipe => {
                 idList.push(recipe.recipe_id)
+                console.log(recipeInfo.id)
             });
             if(idList.includes(recipeInfo.id)){
                 setIsFavorite(true);

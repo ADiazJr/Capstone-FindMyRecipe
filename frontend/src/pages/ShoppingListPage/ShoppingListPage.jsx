@@ -12,6 +12,7 @@ const ShoppingListPage = (props) => {
     const [user, token] = useAuth();
     const [ingredients, setIngredients] = useState([]);
     const [manual, setManual] = useState("");
+    const [edit, setEdit] = useState("");
 
     async function getShoppingList(){
         let response = await axios.get(`http://127.0.0.1:8000/api/shopping_list/`, {
@@ -55,6 +56,10 @@ const ShoppingListPage = (props) => {
                     <form onSubmit={(e) => handleAdd(e, manual)} >
                     <input placeholder="Add ingredient" value={manual} onChange={(event) => setManual(event.target.value)} />
                     <button type="submit" >Submit</button>
+                    </form>
+                    <form>
+                    <input placeholder="Edit" onChange={(event) =>  setEdit(event.target.value)} />
+                    buttonb
                     </form>
                     {ingredients.slice(0).reverse().map((ingredient) => {
                         return(

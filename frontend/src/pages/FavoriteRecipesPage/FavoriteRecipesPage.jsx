@@ -42,12 +42,14 @@ const FavoriteRecipesPage = (props) => {
                 })
                 favoriteRecipeDetails.push(response.data)
         })
+        console.log('fav', favoriteRecipeDetails)
         setRecipeInfo(favoriteRecipeDetails)
     }
 
-    console.log('recipeInfo', recipeInfo)
+    
     return (
         <div>
+            {console.log('recipeInfo', recipeInfo)}
             {!user ?
             <p></p>:
             <div>

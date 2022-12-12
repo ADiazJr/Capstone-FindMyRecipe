@@ -6,14 +6,16 @@ import useAuth from "../../hooks/useAuth";
 const MealPlannerPage = (props) => {
 
     const [mealData, setMealData] = useState([])
-    let mealPlanner = []
+    const [mealPlanner, setMealPlanner] = useState([])
 
     useEffect(() => {
         getMealPlanner();
     }, [])
 
     useEffect(() => {
-        mealDataChange();
+        if(mealData.length >0){
+            mealDataChange();
+        }
     }, [mealData])
 
     const [user, token] = useAuth();
@@ -28,12 +30,11 @@ const MealPlannerPage = (props) => {
         console.log("meal Data", mealData)
     }
 
-    function mealDataChange(){
-        mealData.forEach((object) => {
-            idToRecipe(object.breakfast_id)
-            idToRecipe(object.lunch_id)
-            idToRecipe(object.dinner_id)
-        });
+    async function mealDataChange(){
+            let breakfast = await idToRecipe(mealData[0].breakfast_id)
+            let lunch = await idToRecipe(mealData[0].lunch_id)
+            let dinner = await idToRecipe(mealData[0].dinner_id)
+            setMealPlanner([breakfast, lunch, dinner])
     }
 
     async function idToRecipe(id){
@@ -43,8 +44,7 @@ const MealPlannerPage = (props) => {
                 "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
             }
         });
-        mealPlanner.push(response.data)
-        console.log("meal Planner", mealPlanner)
+        return response.data
     }
 
     return (
@@ -64,7 +64,15 @@ const MealPlannerPage = (props) => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    
+                                    {mealPlanner.length > 2 ?
+                                        <>
+                                        {console.log('mealPlanner in ternary', mealPlanner)}
+                                        <td>{mealPlanner[0].title}</td>
+                                        <td>{mealPlanner[1].title}</td>
+                                        <td>{mealPlanner[2].title}</td>
+                                        </>:
+                                        <td></td>
+                                    }
                                 </tr>
                             </tbody>
                         </table>

@@ -29,6 +29,11 @@ const SearchBar = (props) => {
         navigate("/shopping_list");
     }
 
+    function handleMeal(event){
+        event.preventDefault();
+        navigate("/meal_planner");
+    }
+
     return ( 
         <div>
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -47,6 +52,7 @@ const SearchBar = (props) => {
                 <div>
                     <button onClick={handleFavorite}>Favorite Recipes</button>
                     <button onClick={handleList}>Shopping List</button>
+                    <button onClick={handleMeal}>Meal Planner</button>
                 </div>
             </form>
             }
