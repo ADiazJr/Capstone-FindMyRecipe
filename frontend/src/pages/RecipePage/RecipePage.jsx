@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import parse from 'html-react-parser';
 import useAuth from "../../hooks/useAuth";
+import RecipeIngredients from "../../components/RecipeIngredients";
 
 
 const RecipePage = (props) => {
@@ -18,6 +19,10 @@ const RecipePage = (props) => {
     useEffect(() => {
         favoriteCheck();
     }, [recipeInfo])
+
+    // useEffect(() => {
+    //     summarySplit();
+    // }, [])
     
     
     async function getRecipeInformation(){
@@ -31,10 +36,11 @@ const RecipePage = (props) => {
     }
     
     // function summarySplit(){
-        //     console.log(parse(recipeInfo.summary))
-        //     let parsed = parse(recipeInfo.summary);
-        //     parsed.split("Similar")
-        // }
+    //         let summary = recipeInfo.summary
+    //         console.log("Summary", summary)
+    //         let parsed = parse(summary);
+    //         console.log("Parse", parsed)
+    //     }
         
         async function favoriteCheck(){
             let response = await axios.get(`http://127.0.0.1:8000/api/favorite_recipes/`, {
@@ -74,8 +80,9 @@ const RecipePage = (props) => {
             setIsFavorite(false);
         }
     }
+
+
     
-    let ingredients = recipeInfo.extendedIngredients;
     return ( 
         <div>
             <div>
@@ -103,18 +110,16 @@ const RecipePage = (props) => {
             <p>Ready in {recipeInfo.readyInMinutes} Minutes</p>
             <p>Servings: {recipeInfo.servings}</p>
             <h3>Ingredients</h3>
-            {ingredients.map((ingredient) => {
-                return(
-                    <div>
-                        <p>Name: {ingredient.name}</p>
-                        <p>Amount: {ingredient.amount}{ingredient.unit} </p>
-                    </div>
-                )
+            {recipeInfo.extendedIngredients && 
+                recipeInfo.extendedIngredients.map((ingredient, index) => {
+                    return(
+                        <RecipeIngredients token={token} ingredient={ingredient} index={index} />
+                    )
             })}
             {recipeInfo.instructions && 
             <p>{recipeInfo.instructions}</p>
             }
-            {/* {recipeInfo.analyzedInstructions[0].steps[1].step} */}
+            {/* {recipeInfo.analyzedInstructions[0].steps[0].step} */}
             <p>{recipeInfo.summary && parse(recipeInfo.summary)}</p>
         </div>
      );

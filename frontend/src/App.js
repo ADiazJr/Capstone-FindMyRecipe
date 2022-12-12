@@ -21,6 +21,7 @@ import IngredientSearchPage from "./pages/IngredientSearchPage/IngredientSearchP
 import RecipePage from "./pages/RecipePage/RecipePage";
 import FavoriteRecipesPage from "./pages/FavoriteRecipesPage/FavoriteRecipesPage";
 import ShoppingListPage from "./pages/ShoppingListPage/ShoppingListPage";
+import MealPlannerPage from "./pages/MealPlannerPage/MealPlannerPage";
 
 function App() {
 
@@ -59,13 +60,27 @@ function App() {
             </PrivateRoute>
           }
         />
-
+        <Route
+          path="/shopping_list"
+          element={
+            <PrivateRoute>
+              <ShoppingListPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/meal_planner"
+          element={
+            <PrivateRoute>
+              <MealPlannerPage />
+            </PrivateRoute>
+          }
+        />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/read/:recipeId" element={<RecipePage selectedRecipe={selectedRecipe} setSelectedRecipe={setSelectedRecipe} />} />
         <Route path="/search" element={<SearchPage recipes={recipes} setSelectedRecipe={setSelectedRecipe} />} />
         <Route path="/ingredient_search" element={<IngredientSearchPage setSelectedRecipe={setSelectedRecipe} />} />
-        <Route path='/shopping_list' element={<ShoppingListPage />} />
       </Routes>
       <Footer />
     </div>

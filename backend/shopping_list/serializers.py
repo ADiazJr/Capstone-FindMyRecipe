@@ -4,4 +4,4 @@ from .models import Shopping_list
 class Shopping_listSerializer(serializers.ModelSerializer):
     class Meta:
         model = Shopping_list
-        fields = ["ingredient", "user"]
+        fields = ["user_id", "ingredient", "id"]

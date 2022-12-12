@@ -21,7 +21,12 @@ const SearchBar = (props) => {
 
     function handleFavorite(event){
         event.preventDefault();
-        navigate("/favorite_recipes")
+        navigate("/favorite_recipes");
+    }
+
+    function handleList(event){
+        event.preventDefault();
+        navigate("/shopping_list");
     }
 
     return ( 
@@ -41,6 +46,7 @@ const SearchBar = (props) => {
             <form>
                 <div>
                     <button onClick={handleFavorite}>Favorite Recipes</button>
+                    <button onClick={handleList}>Shopping List</button>
                 </div>
             </form>
             }

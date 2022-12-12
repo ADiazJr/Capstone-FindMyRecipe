@@ -10,9 +10,7 @@ const FavoriteRecipesPage = (props) => {
     const [user, token] = useAuth();
 
     useEffect(() => {
-        if(recipes.length > 0){ 
         changeIdToRecipe();
-        }
     }, [recipes])
 
     useEffect(() =>{
@@ -26,13 +24,12 @@ const FavoriteRecipesPage = (props) => {
                 Authorization: "Bearer " + token 
             }
         })
+        console.log("response data", response.data)
         setRecipes(response.data)
-
     }
 
     console.log("recipes", recipes)
     function changeIdToRecipe(){
-
         let favoriteRecipeDetails = []
         recipes.forEach(async (recipe) => {
             console.log('recipe in map', recipe)
