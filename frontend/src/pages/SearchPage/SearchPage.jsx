@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SearchPage.css"
@@ -5,7 +6,7 @@ import "./SearchPage.css"
 const SearchPage = (props) => {
 
     useEffect(() => {
-        props.getRecipes("Cookies")
+        props.randomRecipes();
     }, [])
 
     let navigate = useNavigate();
@@ -23,7 +24,7 @@ const SearchPage = (props) => {
                 {props.recipes.map((recipe) => {
                     return(
                         <li>
-                            <button onClick={(e) => handleClick(e, recipe)} >
+                            <button className="recipe-button" onClick={(e) => handleClick(e, recipe)} >
                                 <img className="image" src={recipe.image} alt="specific to the recipe" />
                                 <p>{recipe.title}</p>
                             </button>

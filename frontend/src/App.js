@@ -25,7 +25,6 @@ import MealPlannerPage from "./pages/MealPlannerPage/MealPlannerPage";
 
 function App() {
 
-  const [randomRecipes, setRandomRecipes] = useState([])
   const [selectedRecipe, setSelectedRecipe] = useState({})
   const [recipes, setRecipes] = useState([])
   let navigate = useNavigate();
@@ -39,6 +38,16 @@ function App() {
     })
     setRecipes(response.data.results)
     navigate('/search')
+  }
+
+  async function randomRecipes(){
+    let response = await axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=20`, {
+      headers: {
+          "X-RapidAPI-Key": "1f1ce1238dmsh36abaf75fb5955cp1c20f7jsn99509f578ee6",
+          "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        }
+    });
+    setRecipes(response.data.recipes)
   }
 
   return (
@@ -80,7 +89,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/read/:recipeId" element={<RecipePage selectedRecipe={selectedRecipe} setSelectedRecipe={setSelectedRecipe} />} />
-        <Route path="/search" element={<SearchPage getRecipes={getRecipes} recipes={recipes} setSelectedRecipe={setSelectedRecipe} />} />
+        <Route path="/search" element={<SearchPage randomRecipes={randomRecipes} getRecipes={getRecipes} recipes={recipes} setSelectedRecipe={setSelectedRecipe} />} />
         <Route path="/ingredient_search" element={<IngredientSearchPage setSelectedRecipe={setSelectedRecipe} />} />
       </Routes>
       <Footer />

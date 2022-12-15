@@ -7,4 +7,9 @@
 
 .image{
     border-radius: 13px;
+    width: 300px
+}
+
+.recipe-button{
+    min-inline-size: min-content;
 }
