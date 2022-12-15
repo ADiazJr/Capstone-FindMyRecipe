@@ -57,10 +57,6 @@ const ShoppingListPage = (props) => {
                     <input placeholder="Add ingredient" value={manual} onChange={(event) => setManual(event.target.value)} />
                     <button type="submit" >Submit</button>
                     </form>
-                    <form>
-                    <input placeholder="Edit" onChange={(event) =>  setEdit(event.target.value)} />
-                    buttonb
-                    </form>
                     {ingredients.slice(0).reverse().map((ingredient) => {
                         return(
                             <div>

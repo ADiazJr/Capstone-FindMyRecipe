@@ -67,9 +67,9 @@ const MealPlannerPage = (props) => {
                                     {mealPlanner.length > 2 ?
                                         <>
                                         {console.log('mealPlanner in ternary', mealPlanner)}
-                                        <td>{mealPlanner[0].title}</td>
-                                        <td>{mealPlanner[1].title}</td>
-                                        <td>{mealPlanner[2].title}</td>
+                                        <td>{mealPlanner[0].title}<img src={mealPlanner[0].image} /></td>
+                                        <td>{mealPlanner[1].title}<img src={mealPlanner[1].image} /></td>
+                                        <td>{mealPlanner[2].title}<img src={mealPlanner[2].image} /></td>
                                         </>:
                                         <td></td>
                                     }

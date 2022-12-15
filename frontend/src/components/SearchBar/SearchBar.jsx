@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
+import "./SearchBar.css";
 
 
 const SearchBar = (props) => {
@@ -35,10 +36,10 @@ const SearchBar = (props) => {
     }
 
     return ( 
-        <div>
+        <div className="search">
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
-                    <input placeholder="search" value={search} onChange={(event) => setSearch(event.target.value)} />
+                    <input className="input" placeholder="Search" value={search} onChange={(event) => setSearch(event.target.value)} />
                 </div>
             </form>
             <form>

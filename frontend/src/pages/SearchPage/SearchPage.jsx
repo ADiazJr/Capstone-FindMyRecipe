@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "./SearchPage.css"
 
 const SearchPage = (props) => {
 
@@ -13,12 +14,12 @@ const SearchPage = (props) => {
     
     return ( 
         <div>
-            <ul>
+            <ul className="unorderedList">
                 {props.recipes.map((recipe) => {
                     return(
                         <li>
                             <button onClick={(e) => handleClick(e, recipe)} >
-                                <img src={recipe.image} alt="specific to the recipe" />
+                                <img className="image" src={recipe.image} alt="specific to the recipe" />
                                 <p>{recipe.title}</p>
                             </button>
                         </li>

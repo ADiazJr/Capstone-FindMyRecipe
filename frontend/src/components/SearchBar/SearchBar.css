@@ -1,0 +1,16 @@
+.search {
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    border-radius: 9px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navBar button {
+    margin-inline: 10px;
+    border-radius: 9px;
+    background: darkmagenta;
+}

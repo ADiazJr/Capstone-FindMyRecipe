@@ -25,6 +25,7 @@ import MealPlannerPage from "./pages/MealPlannerPage/MealPlannerPage";
 
 function App() {
 
+  const [randomRecipes, setRandomRecipes] = useState([])
   const [selectedRecipe, setSelectedRecipe] = useState({})
   const [recipes, setRecipes] = useState([])
   let navigate = useNavigate();

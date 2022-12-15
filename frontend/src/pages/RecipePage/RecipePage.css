@@ -1,0 +1,34 @@
+.column-ingredients {
+    float: left;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+.column{
+    float: left;
+    width: 50%;
+}
+  
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.recipeImage{
+    margin-left: 3rem;
+}
+
+.recipeTitle{
+    margin-left: 3rem;
+}
+
+.addToFavorite{
+    margin-left: 3rem;
+}
+
+.ingredients-header{
+    margin-right: 10rem;
+}

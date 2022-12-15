@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-import SearchBar from "../SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 import "./NavBar.css";
 
 const Navbar = (props) => {
@@ -13,7 +13,7 @@ const Navbar = (props) => {
       <ul>
         <li className="brand">
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>React/Django JWT</b>
+            <b>FindMyRecipe</b>
           </Link>
         </li>
         <li>

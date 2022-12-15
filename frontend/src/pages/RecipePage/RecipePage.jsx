@@ -3,6 +3,7 @@ import axios from "axios";
 import parse from 'html-react-parser';
 import useAuth from "../../hooks/useAuth";
 import RecipeIngredients from "../../components/RecipeIngredients";
+import "./RecipePage.css"
 
 
 const RecipePage = (props) => {
@@ -95,28 +96,34 @@ const RecipePage = (props) => {
                         <p>This Recipe is in your Favorites</p>
                         <button onClick={handleDelete}>Remove from Favorites</button>
                     </div>:
-                    <button onClick={handleAdd} >Add to Favorites</button>
+                    <button className="addToFavorite" onClick={handleAdd} >Add to Favorites</button>
                     }
                 </div>
                 }
             </div>
-            <h2>{recipeInfo.title}</h2>
-            <img src={recipeInfo.image} alt="Selected Recipe" />
-            {recipeInfo.vegetarian === true &&
-            <p>Vegetarian: True</p>
-            }
-            {recipeInfo.vegetarian === false &&
-            <p>Vegetarian: False</p>
-            }
-            <p>Ready in {recipeInfo.readyInMinutes} Minutes</p>
-            <p>Servings: {recipeInfo.servings}</p>
-            <h3>Ingredients</h3>
-            {recipeInfo.extendedIngredients && 
-                recipeInfo.extendedIngredients.map((ingredient, index) => {
-                    return(
-                        <RecipeIngredients token={token} ingredient={ingredient} index={index} />
-                    )
-            })}
+            <div className="row">
+                <div className="column">
+                    <h2 className="recipeTitle" >{recipeInfo.title}</h2>
+                    <img className="recipeImage" src={recipeInfo.image} alt="Selected Recipe" />
+                    {recipeInfo.vegetarian === true &&
+                    <p>Vegetarian: True</p>
+                    }
+                    {recipeInfo.vegetarian === false &&
+                    <p>Vegetarian: False</p>
+                    }
+                    <p>Ready in {recipeInfo.readyInMinutes} Minutes</p>
+                    <p>Servings: {recipeInfo.servings}</p>
+                </div>
+                <div className="column-ingredients">
+                    <h3 className="ingredients-header">Ingredients</h3>
+                    {recipeInfo.extendedIngredients && 
+                    recipeInfo.extendedIngredients.map((ingredient, index) => {
+                        return(
+                            <RecipeIngredients token={token} ingredient={ingredient} index={index} />
+                        )
+                    })}
+                </div>
+            </div>
             {recipeInfo.instructions && 
             <p>{recipeInfo.instructions}</p>
             }
