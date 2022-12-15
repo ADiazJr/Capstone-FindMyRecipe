@@ -97,10 +97,10 @@ const RecipePage = (props) => {
                     <h2 className="recipeTitle" >{recipeInfo.title}</h2>
                     <img className="recipeImage" src={recipeInfo.image} alt="Selected Recipe" />
                     {recipeInfo.vegetarian === true &&
-                    <p className="vegetarian">Vegetarian: True</p>
+                    <p className="vegetarian">This dish is Vegetarian</p>
                     }
                     {recipeInfo.vegetarian === false &&
-                    <p className="vegetarian">Vegetarian: False</p>
+                    <p className="vegetarian">This dish is not Vegetarian</p>
                     }
                     <p className="vegetarian">Ready in {recipeInfo.readyInMinutes} Minutes</p>
                     <p className="servings">Servings: {recipeInfo.servings}</p>

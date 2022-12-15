@@ -19,6 +19,8 @@
 
 .recipeImage{
     margin-left: 3rem;
+    border-radius: 20px;
+    border: solid rgb(152, 68, 181);
 }
 
 .recipeTitle{
@@ -26,7 +28,9 @@
 }
 
 .addToFavorite{
+    margin: 0.5rem;
     margin-left: 3rem;
+    border-color: bisque;
 }
 
 .ingredients-header{
@@ -34,11 +38,15 @@
 }
 
 .vegetarian{
+    margin: 1rem;
     margin-left: 3rem;
+    font-size: 25px;
 }
 
 .servings{
+    margin: 1rem;
     margin-left: 3rem;
+    font-size: 25px;
 }
 
 .column-summary{

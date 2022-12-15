@@ -1,5 +1,6 @@
 .shopping-button{
     margin-top: 0;
+    border-color: bisque;
 }
 
 .ingredient{
@@ -7,5 +8,14 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     width: 350px;
-    height: 61px;
+    height: 108px;
+    border: solid;
+}
+
+.ingredient-name{
+    margin: 5px;
+}
+
+.ingredient-amount{
+    margin: 5px;
 }

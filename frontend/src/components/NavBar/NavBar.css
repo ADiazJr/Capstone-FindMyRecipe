@@ -17,8 +17,8 @@ li {
 }
 
 .navBar button {
-  border: 2px solid white;
-  color: white;
+  border: 2px solid bisque;
+  color: bisque;
   padding: 0.4rem 0.5rem;
   margin-inline: 10px;
   border-radius: 9px;
@@ -36,3 +36,6 @@ li {
   font-size: 2rem;
 }
 
+.title{
+  color: bisque;
+}

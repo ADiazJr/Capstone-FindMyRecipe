@@ -42,7 +42,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="body">
       <Navbar getRecipes={getRecipes} />
       <Routes>
         <Route
