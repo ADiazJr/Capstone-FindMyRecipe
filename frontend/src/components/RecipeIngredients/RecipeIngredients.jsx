@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import "./RecipeIngredients.css"
 
 
 const RecipeIngredients = (props) => {
@@ -18,10 +19,10 @@ const RecipeIngredients = (props) => {
     }
 
     return ( 
-    <div>
-        <p>Name: {props.ingredient.name}</p>
-        <p>Amount: {props.ingredient.amount}{props.ingredient.unit} </p>
-        <button onClick={() => handleList(props.ingredient.name)} >Add to Shopping List</button>
+    <div className="ingredient" >
+        <p className="ingredient-name" >Name: {props.ingredient.name}</p>
+        <p className="ingredient-amount" >Amount: {props.ingredient.amount}{props.ingredient.unit} </p>
+        <button className="shopping-button" onClick={() => handleList(props.ingredient.name)} >Add to Shopping List</button>
         {confirmation === false ?
             <p></p> :
             <p>Ingredient Added!</p> 

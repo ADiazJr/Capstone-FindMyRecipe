@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import parse from 'html-react-parser';
 import useAuth from "../../hooks/useAuth";
-import RecipeIngredients from "../../components/RecipeIngredients";
+import RecipeIngredients from "../../components/RecipeIngredients/RecipeIngredients";
 import "./RecipePage.css"
 
 
@@ -106,13 +106,13 @@ const RecipePage = (props) => {
                     <h2 className="recipeTitle" >{recipeInfo.title}</h2>
                     <img className="recipeImage" src={recipeInfo.image} alt="Selected Recipe" />
                     {recipeInfo.vegetarian === true &&
-                    <p>Vegetarian: True</p>
+                    <p className="vegetarian">Vegetarian: True</p>
                     }
                     {recipeInfo.vegetarian === false &&
-                    <p>Vegetarian: False</p>
+                    <p className="vegetarian">Vegetarian: False</p>
                     }
-                    <p>Ready in {recipeInfo.readyInMinutes} Minutes</p>
-                    <p>Servings: {recipeInfo.servings}</p>
+                    <p className="vegetarian">Ready in {recipeInfo.readyInMinutes} Minutes</p>
+                    <p className="servings">Servings: {recipeInfo.servings}</p>
                 </div>
                 <div className="column-ingredients">
                     <h3 className="ingredients-header">Ingredients</h3>
@@ -124,11 +124,26 @@ const RecipePage = (props) => {
                     })}
                 </div>
             </div>
-            {recipeInfo.instructions && 
-            <p>{recipeInfo.instructions}</p>
-            }
-            {/* {recipeInfo.analyzedInstructions[0].steps[0].step} */}
-            <p>{recipeInfo.summary && parse(recipeInfo.summary)}</p>
+            <div className="row">
+                <div className="column">
+                    {recipeInfo.instructions && 
+                    <div>
+                        <h3 className="instructions-header">Instructions</h3>
+                        <p className="instructions">{recipeInfo.instructions}</p>
+                    </div>
+                    }
+                </div>
+                <div className="column-summary">
+                    <h3 className="summary-header">Summary</h3>
+                    <p className="summary">{recipeInfo.summary && parse(recipeInfo.summary)}</p>
+                </div>
+            </div>
+            {/* {recipeInfo && 
+            <div>
+            {recipeInfo.analyzedInstructions[0].steps[0].step}
+            {recipeInfo.analyzedInstructions[0].steps[1].step}
+            </div>
+            } */}
         </div>
      );
 }
