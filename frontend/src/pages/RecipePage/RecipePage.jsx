@@ -8,6 +8,7 @@ import "./RecipePage.css"
 
 const RecipePage = (props) => {
 
+    let summary = "";
     let idList = [];
     const [isFavorite, setIsFavorite] = useState(false);
     const [user, token] = useAuth();
@@ -21,9 +22,6 @@ const RecipePage = (props) => {
         favoriteCheck();
     }, [recipeInfo])
 
-    // useEffect(() => {
-    //     summarySplit();
-    // }, [])
     
     
     async function getRecipeInformation(){
@@ -36,12 +34,6 @@ const RecipePage = (props) => {
         setRecipeInfo(response.data);
     }
     
-    // function summarySplit(){
-    //         let summary = recipeInfo.summary
-    //         console.log("Summary", summary)
-    //         let parsed = parse(summary);
-    //         console.log("Parse", parsed)
-    //     }
         
         async function favoriteCheck(){
             let response = await axios.get(`http://127.0.0.1:8000/api/favorite_recipes/`, {
@@ -51,7 +43,6 @@ const RecipePage = (props) => {
             });
             response.data.forEach(recipe => {
                 idList.push(recipe.recipe_id)
-                console.log(recipeInfo.id)
             });
             if(idList.includes(recipeInfo.id)){
                 setIsFavorite(true);
@@ -135,7 +126,7 @@ const RecipePage = (props) => {
                 </div>
                 <div className="column-summary">
                     <h3 className="summary-header">Summary</h3>
-                    <p className="summary">{recipeInfo.summary && parse(recipeInfo.summary)}</p>
+                    <p className="summary">{recipeInfo.summary && parse(recipeInfo.summary.slice(0, 692))}</p>
                 </div>
             </div>
             {/* {recipeInfo && 
