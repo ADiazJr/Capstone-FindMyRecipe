@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./IngredientSearchPage.css"
 
 
 const IngredientSearchPage = (props) => {
@@ -43,7 +44,7 @@ const IngredientSearchPage = (props) => {
 
     console.log(searchList)
     async function ingredient_search(ingredients){
-        let response = await axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${ingredients}`, {
+        let response = await axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${ingredients}&number=20`, {
             headers: {
                 "X-RapidAPI-Key": "1f1ce1238dmsh36abaf75fb5955cp1c20f7jsn99509f578ee6",
                 "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -60,8 +61,8 @@ const IngredientSearchPage = (props) => {
 
 
     return (                                                      
-        <div>
-            <div>
+        <div className="row">
+            <div className="column-search">
                 <h3>Ingredient Search</h3>
                 <p>Enter Ingredients</p>
                 <form>
@@ -94,18 +95,34 @@ const IngredientSearchPage = (props) => {
                 </form>
                 <button type="button" onClick={searchClick}>Search</button>
             </div>
-            <div>
+            <div className="column">
                 <ul>
-                    {recipes.map((recipe) => {
-                        return(
-                            <li>
-                                <button onClick={(e) => handleClick(e, recipe)} >
-                                    <img src={recipe.image} alt="recipe"/>
-                                    <p>{recipe.title}</p>
-                                </button>
-                            </li>
-                        )
-                    })}
+                    <div className="row">
+                        <div className="column">
+                        {recipes.slice(10).map((recipe) => {
+                            return(
+                                <li>
+                                    <button onClick={(e) => handleClick(e, recipe)} >
+                                        <img src={recipe.image} alt="recipe"/>
+                                        <p>{recipe.title}</p>
+                                    </button>
+                                </li>
+                            )
+                        })}
+                        </div>
+                        <div className="column">
+                        {recipes.slice(0, 10).map((recipe) => {
+                            return(
+                                <li>
+                                    <button onClick={(e) => handleClick(e, recipe)} >
+                                        <img src={recipe.image} alt="recipe"/>
+                                        <p>{recipe.title}</p>
+                                    </button>
+                                </li>
+                            )
+                        })}
+                        </div>
+                    </div>
                 </ul>
             </div>
         </div>    

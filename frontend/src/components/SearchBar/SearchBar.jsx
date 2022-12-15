@@ -40,6 +40,7 @@ const SearchBar = (props) => {
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
                     <input className="input" placeholder="Search" value={search} onChange={(event) => setSearch(event.target.value)} />
+                    <button className="input-search">►</button>
                 </div>
             </form>
             <form>

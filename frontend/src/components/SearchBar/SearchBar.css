@@ -7,6 +7,16 @@
     border-radius: 9px;
     margin-left: 10px;
     margin-right: 10px;
+    padding-right: 50px;
+}
+
+.input-search {
+    background: none !important;
+    border: none !important;
+    margin-left: -35px !important;
+    height: 12px !important;
+    color: bisque !important;
+    width: 15px !important;
 }
 
 .navBar button {

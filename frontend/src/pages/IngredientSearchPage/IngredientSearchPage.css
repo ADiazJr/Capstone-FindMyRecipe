@@ -1,0 +1,10 @@
+.column-search{
+    float: left;
+    width: 50%;
+    margin: 3rem;
+}
+
+.column{
+    float: right;
+    width: 50%;
+}

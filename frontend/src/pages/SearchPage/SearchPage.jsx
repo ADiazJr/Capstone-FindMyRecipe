@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SearchPage.css"
@@ -26,7 +25,7 @@ const SearchPage = (props) => {
                         <li>
                             <button className="recipe-button" onClick={(e) => handleClick(e, recipe)} >
                                 <img className="image" src={recipe.image} alt="specific to the recipe" />
-                                <p>{recipe.title}</p>
+                                <p className="recipe-title">{recipe.title}</p>
                             </button>
                         </li>
                     )

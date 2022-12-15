@@ -13,3 +13,7 @@
 .recipe-button{
     min-inline-size: min-content;
 }
+
+.recipe-title{
+    color: bisque;
+}
