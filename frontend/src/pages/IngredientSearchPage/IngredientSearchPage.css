@@ -4,13 +4,14 @@
     margin: 4rem;
 }
 
-.column{
+.column-recipes{
     float: right;
     width: 50%;
 }
 
 .recipe-button{
-    margin: 2rem;
+    margin: 2rem !important;
+    background-color: bisque;
 }
 
 .header{
@@ -25,4 +26,22 @@
 
 .ingredient-input{
     margin-left: 1rem;
+}
+
+.recipe-image{
+    height: 220px;
+    width: 310px;
+}
+
+.row-recipes{
+    display: flex;
+}
+
+.ingredient-list button:hover{
+    color: bisque;
+    background-color: #9844b5;
+}
+
+.list-item{
+    background-color: bisque;
 }

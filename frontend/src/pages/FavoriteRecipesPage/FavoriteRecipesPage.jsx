@@ -58,18 +58,20 @@ const FavoriteRecipesPage = (props) => {
             {!user ?
             <p></p>:
             <div>
-                <h3>Here's your Favorite Recipes {user.username}! </h3>
-                {recipeInfo.map((recipe) => {
-                    return(
-                        <div>
-                            <button onClick={(e) => handleClick(e, recipe)}>
-                                <p>{recipe.title}</p>
-                                <img className="recipe-image" src={recipe.image} alt="recipe" />
-                                <p>Servings: {recipe.servings}</p>
-                            </button>
-                        </div>
-                    )
-                })}
+                <h3 className="header">Here's your Favorite Recipes {user.username}! </h3>
+                <div className="row-recipe">
+                    {recipeInfo.map((recipe) => {
+                        return(
+                            <div className="column">
+                                <button className="recipe-button" onClick={(e) => handleClick(e, recipe)}>
+                                    <p>{recipe.title}</p>
+                                    <img className="recipe-image" src={recipe.image} alt="recipe" />
+                                    <p>Servings: {recipe.servings}</p>
+                                </button>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
             }
 

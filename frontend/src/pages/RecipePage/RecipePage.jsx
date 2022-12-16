@@ -8,7 +8,6 @@ import "./RecipePage.css"
 
 const RecipePage = (props) => {
 
-    let summary = "";
     let idList = [];
     const [isFavorite, setIsFavorite] = useState(false);
     const [user, token] = useAuth();
@@ -42,9 +41,9 @@ const RecipePage = (props) => {
                 }
             });
             response.data.forEach(recipe => {
-                idList.push(recipe.recipe_id)
+                idList.push(recipe.recipe_id);
             });
-            if(idList.includes(recipeInfo.id)){
+            if(idList.includes(recipeInfo.id.toString())){
                 setIsFavorite(true);
             }
             else{
@@ -83,11 +82,11 @@ const RecipePage = (props) => {
                 <p></p>:
                 <div>
                     {isFavorite ? 
-                    <div>
+                    <div className="remove-from-favorite">
                         <p>This Recipe is in your Favorites</p>
                         <button onClick={handleDelete}>Remove from Favorites</button>
                     </div>:
-                    <button className="addToFavorite" onClick={handleAdd} >Add to Favorites</button>
+                    <button className="add-to-favorite" onClick={handleAdd} >Add to Favorites</button>
                     }
                 </div>
                 }

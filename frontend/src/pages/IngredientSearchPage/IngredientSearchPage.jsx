@@ -99,26 +99,26 @@ const IngredientSearchPage = (props) => {
                 <button type="button" onClick={searchClick}>Search</button>
             </div>
             <div className="column">
-                <ul>
-                    <div className="row">
-                        <div className="column">
+                <ul className="ingredient-list">
+                    <div className="row-recipes">
+                        <div className="column-recipes">
                         {recipes.slice(10).map((recipe) => {
                             return(
-                                <li>
+                                <li className="list-item">
                                     <button className="recipe-button" onClick={(e) => handleClick(e, recipe)} >
-                                        <img src={recipe.image} alt="recipe"/>
+                                        <img className="recipe-image" src={recipe.image} alt="recipe"/>
                                         <p>{recipe.title}</p>
                                     </button>
                                 </li>
                             )
                         })}
                         </div>
-                        <div className="column">
+                        <div className="column-recipes">
                         {recipes.slice(0, 10).map((recipe) => {
                             return(
-                                <li>
+                                <li className="list-item">
                                     <button className="recipe-button" onClick={(e) => handleClick(e, recipe)} >
-                                        <img src={recipe.image} alt="recipe"/>
+                                        <img className="recipe-image" src={recipe.image} alt="recipe"/>
                                         <p>{recipe.title}</p>
                                     </button>
                                 </li>

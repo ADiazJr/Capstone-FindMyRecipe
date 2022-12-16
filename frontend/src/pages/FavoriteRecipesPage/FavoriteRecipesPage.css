@@ -4,3 +4,29 @@
     height: 230px;
     width: 330px;
 }
+
+.column{
+    height: 295px;
+    width: 320px;
+}
+
+.recipe-button{
+    background-color: bisque;
+    color: black;
+    border: solid #9844b5;
+    margin: 1rem;
+}
+
+.row-recipe{    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-between;
+    gap: 35px;
+    width: 1300px;
+}
+
+.header{
+    margin-left: 20px;
+}
