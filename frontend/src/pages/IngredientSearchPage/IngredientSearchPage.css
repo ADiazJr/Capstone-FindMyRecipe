@@ -1,10 +1,28 @@
 .column-search{
     float: left;
-    width: 50%;
-    margin: 3rem;
+    width: 250px;
+    margin: 4rem;
 }
 
 .column{
     float: right;
     width: 50%;
+}
+
+.recipe-button{
+    margin: 2rem;
+}
+
+.header{
+    margin: 1rem;
+    margin-bottom: 0rem;
+}
+
+.directions{
+    margin: 1rem;
+    margin-top: 0rem;
+}
+
+.ingredient-input{
+    margin-left: 1rem;
 }

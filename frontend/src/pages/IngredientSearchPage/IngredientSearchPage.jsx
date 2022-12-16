@@ -63,13 +63,17 @@ const IngredientSearchPage = (props) => {
     return (                                                      
         <div className="row">
             <div className="column-search">
-                <h3>Ingredient Search</h3>
-                <p>Enter Ingredients</p>
+                <h3 className="header">Ingredient Search</h3>
+                <p className="directions">Enter Ingredients</p>
                 <form>
                     {ingredientList.map((ingredient, index) => (
                         <div key={index}>
                             <div>
-                                <input name="ingredient" type="text" id="ingredient" required 
+                                <input className="ingredient-input" 
+                                name="ingredient" 
+                                placeholder="type ingredient" 
+                                type="text" 
+                                id="ingredient" required 
                                 value={ingredient.ingredient}
                                 onChange={(e) => handleIngredientChange(e, index)}
                                 />
@@ -79,7 +83,6 @@ const IngredientSearchPage = (props) => {
                                 <span>Add an ingredient</span>
                             </button>
                             )}
-                                
                             </div>
                             <div>
                                 {ingredientList.length > 1 && (
@@ -102,7 +105,7 @@ const IngredientSearchPage = (props) => {
                         {recipes.slice(10).map((recipe) => {
                             return(
                                 <li>
-                                    <button onClick={(e) => handleClick(e, recipe)} >
+                                    <button className="recipe-button" onClick={(e) => handleClick(e, recipe)} >
                                         <img src={recipe.image} alt="recipe"/>
                                         <p>{recipe.title}</p>
                                     </button>
@@ -114,7 +117,7 @@ const IngredientSearchPage = (props) => {
                         {recipes.slice(0, 10).map((recipe) => {
                             return(
                                 <li>
-                                    <button onClick={(e) => handleClick(e, recipe)} >
+                                    <button className="recipe-button" onClick={(e) => handleClick(e, recipe)} >
                                         <img src={recipe.image} alt="recipe"/>
                                         <p>{recipe.title}</p>
                                     </button>

@@ -66,7 +66,7 @@ function App() {
           path="/favorite_recipes"
           element={
             <PrivateRoute>
-              <FavoriteRecipesPage />
+              <FavoriteRecipesPage setSelectedRecipe={setSelectedRecipe} />
             </PrivateRoute>
           }
         />

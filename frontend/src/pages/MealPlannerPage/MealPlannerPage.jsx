@@ -52,7 +52,6 @@ const MealPlannerPage = (props) => {
             {!user ? 
             <p></p>:
             <div>
-                <button onClick={getMealPlanner} >Load Meal Planner</button>
                     <form>
                         <table>
                             <thead>

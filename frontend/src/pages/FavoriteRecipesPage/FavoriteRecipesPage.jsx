@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import "./FavoriteRecipesPage.css"
+import { useNavigate } from "react-router-dom";
 
 
 const FavoriteRecipesPage = (props) => {
@@ -8,6 +10,7 @@ const FavoriteRecipesPage = (props) => {
     const [recipeInfo, setRecipeInfo] = useState([])
     const [recipes, setRecipes] = useState([]);
     const [user, token] = useAuth();
+    let navigate = useNavigate();
 
     useEffect(() => {
         changeIdToRecipe();
@@ -24,15 +27,12 @@ const FavoriteRecipesPage = (props) => {
                 Authorization: "Bearer " + token 
             }
         })
-        console.log("response data", response.data)
         setRecipes(response.data)
     }
 
-    console.log("recipes", recipes)
     function changeIdToRecipe(){
         let favoriteRecipeDetails = []
         recipes.forEach(async (recipe) => {
-            console.log('recipe in map', recipe)
             let response = await axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipe.recipe_id}/information`, {
                 headers: {
                     "X-RapidAPI-Key": "1f1ce1238dmsh36abaf75fb5955cp1c20f7jsn99509f578ee6",
@@ -42,10 +42,15 @@ const FavoriteRecipesPage = (props) => {
                 })
                 favoriteRecipeDetails.push(response.data)
         })
-        console.log('fav', favoriteRecipeDetails)
         setRecipeInfo(favoriteRecipeDetails)
     }
 
+    function handleClick(event, recipe){
+        event.preventDefault();
+        props.setSelectedRecipe(recipe);
+        navigate(`/read/${recipe.id}/`)
+
+    }
     
     return (
         <div>
@@ -53,12 +58,15 @@ const FavoriteRecipesPage = (props) => {
             {!user ?
             <p></p>:
             <div>
+                <h3>Here's your Favorite Recipes {user.username}! </h3>
                 {recipeInfo.map((recipe) => {
                     return(
                         <div>
-                            <p>{recipe.title}</p>
-                            <img src={recipe.image} alt="recipe" />
-                            <p>Servings: {recipe.servings}</p>
+                            <button onClick={(e) => handleClick(e, recipe)}>
+                                <p>{recipe.title}</p>
+                                <img className="recipe-image" src={recipe.image} alt="recipe" />
+                                <p>Servings: {recipe.servings}</p>
+                            </button>
                         </div>
                     )
                 })}
