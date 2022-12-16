@@ -19,7 +19,7 @@ const SearchPage = (props) => {
     
     return ( 
         <div>
-            <ul className="unorderedList">
+            <ul className="unordered-list">
                 {props.recipes.map((recipe) => {
                     return(
                         <li>
