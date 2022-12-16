@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import "./MealPlannerPage.css"
 
 
 const MealPlannerPage = (props) => {
@@ -65,9 +66,9 @@ const MealPlannerPage = (props) => {
                                 <tr>
                                     {mealPlanner.length > 2 ?
                                         <>
-                                        <td>{mealPlanner[0].title}<img src={mealPlanner[0].image} /></td>
-                                        <td>{mealPlanner[1].title}<img src={mealPlanner[1].image} /></td>
-                                        <td>{mealPlanner[2].title}<img src={mealPlanner[2].image} /></td>
+                                        <td>{mealPlanner[0].title}<img className="meal-image" src={mealPlanner[0].image} /></td>
+                                        <td>{mealPlanner[1].title}<img className="meal-image" src={mealPlanner[1].image} /></td>
+                                        <td>{mealPlanner[2].title}<img className="meal-image" src={mealPlanner[2].image} /></td>
                                         </>:
                                         <td></td>
                                     }

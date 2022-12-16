@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import "./ShoppingListPage.css"
 
 
 const ShoppingListPage = (props) => {
@@ -12,7 +13,6 @@ const ShoppingListPage = (props) => {
     const [user, token] = useAuth();
     const [ingredients, setIngredients] = useState([]);
     const [manual, setManual] = useState("");
-    const [edit, setEdit] = useState("");
 
     async function getShoppingList(){
         let response = await axios.get(`http://127.0.0.1:8000/api/shopping_list/`, {
@@ -48,18 +48,18 @@ const ShoppingListPage = (props) => {
 
 
     return ( 
-        <div>
-            <h3>Shopping List</h3>
+        <div className="shopping-list">
+            <h3 className="header">Shopping List</h3>
             {!user ? 
                 <p></p>:
                 <div>
-                    <form onSubmit={(e) => handleAdd(e, manual)} >
+                    <form className="ingredient-form" onSubmit={(e) => handleAdd(e, manual)} >
                     <input placeholder="Add ingredient" value={manual} onChange={(event) => setManual(event.target.value)} />
                     <button type="submit" >Submit</button>
                     </form>
                     {ingredients.slice(0).reverse().map((ingredient) => {
                         return(
-                            <div>
+                            <div className="ingredient">
                                 <p>Ingredient: {ingredient.ingredient}</p>
                                 <button onClick={() => handleClick(ingredient.id)} >Delete Ingredient</button>
                             </div>
