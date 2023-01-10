@@ -38,10 +38,5 @@
 }
 
 .ingredient-list button:hover{
-    color: bisque;
     background-color: #9844b5;
-}
-
-.list-item{
-    background-color: bisque;
 }
