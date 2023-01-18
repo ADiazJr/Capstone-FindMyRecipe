@@ -33,13 +33,7 @@ const FavoriteRecipesPage = (props) => {
     function changeIdToRecipe(){
         let favoriteRecipeDetails = []
         recipes.forEach(async (recipe) => {
-            let response = await axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipe.recipe_id}/information`, {
-                headers: {
-                    "X-RapidAPI-Key": "1f1ce1238dmsh36abaf75fb5955cp1c20f7jsn99509f578ee6",
-                    "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-                  }
-
-                })
+            let response = await axios.get(`https://api.spoonacular.com/recipes/${recipe.recipe_id}/information?apiKey=d7a4ab507bb8446f8adbe2de0d7cc7e6`)
                 favoriteRecipeDetails.push(response.data)
         })
         setRecipeInfo(favoriteRecipeDetails)

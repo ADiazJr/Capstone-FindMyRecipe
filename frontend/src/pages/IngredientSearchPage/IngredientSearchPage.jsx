@@ -44,12 +44,7 @@ const IngredientSearchPage = (props) => {
 
     console.log(searchList)
     async function ingredient_search(ingredients){
-        let response = await axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${ingredients}&number=20`, {
-            headers: {
-                "X-RapidAPI-Key": "1f1ce1238dmsh36abaf75fb5955cp1c20f7jsn99509f578ee6",
-                "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            }
-        })
+        let response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&apiKey=d7a4ab507bb8446f8adbe2de0d7cc7e6`)
         setRecipes(response.data)
      }
 
