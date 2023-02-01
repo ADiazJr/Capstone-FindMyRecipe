@@ -48,6 +48,21 @@ const MealPlannerPage = (props) => {
             {!user ? 
             <p></p>:
             <div>
+                {!mealPlanner[0] && 
+                <div>
+                    <button>Add Recipe 1 to Meal Planner</button>
+                </div>
+                }
+                {!mealPlanner[1] && 
+                <div>
+                    <button>Add Recipe 2 to Meal Planner</button>
+                </div>
+                }
+                {!mealPlanner[2] && 
+                <div>
+                    <button>Add Recipe 3 to Meal Planner</button>
+                </div>
+                }
                     <form>
                         <table>
                             <thead>

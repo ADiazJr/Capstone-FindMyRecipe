@@ -114,7 +114,7 @@ const RecipePage = (props) => {
                     {recipeInfo.instructions && 
                     <div>
                         <h3 className="instructions-header">Instructions</h3>
-                        <p className="instructions">{recipeInfo.instructions}</p>
+                        <p className="instructions">{recipeInfo.instructions && parse(recipeInfo.instructions)}</p>
                     </div>
                     }
                 </div>
