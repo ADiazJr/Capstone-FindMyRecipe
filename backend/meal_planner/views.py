@@ -18,3 +18,15 @@ def meal_planner_control(request):
         serializer.is_valid(raise_exception=True)
         serializer.save(user=request.user)
         return Response(serializer.data)
+
+
+
+@api_view(["PATCH"])
+@permission_classes([IsAuthenticated])
+def update_meal_plan(request,pk):
+    if request.method == "PATCH":
+        meal_planner = get_object_or_404(Meal_planner, pk = pk)
+        serializer = Meal_plannerSerializer(meal_planner, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)

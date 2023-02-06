@@ -13,11 +13,7 @@ const MealPlannerPage = (props) => {
         getMealPlanner();
     }, [])
 
-    useEffect(() => {
-        if(mealData.length >0){
-            mealDataChange();
-        }
-    }, [mealData])
+   
 
     const [user, token] = useAuth();
 
@@ -28,10 +24,12 @@ const MealPlannerPage = (props) => {
             }
         });
         setMealData(response.data);
-        console.log("meal Data", mealData)
+        mealDataChange(response.data)
+        console.log("meal Data", response.data)
+        console.log("user", user)
     }
 
-    async function mealDataChange(){
+    async function mealDataChange(mealData){
             let breakfast = await idToRecipe(mealData[0].breakfast_id)
             let lunch = await idToRecipe(mealData[0].lunch_id)
             let dinner = await idToRecipe(mealData[0].dinner_id)
@@ -43,22 +41,60 @@ const MealPlannerPage = (props) => {
         return response.data
     }
 
+    async function deleteFromMeal(numberToDelete){
+        if (numberToDelete == 1){
+        let response = await axios.patch("http://127.0.0.1:8000/api/meal_planner/1/", {
+           
+            "breakfast_id": "00000"
+    
+    }  ,{
+            headers: {
+                Authorization: "Bearer " + token
+            },
+        });
+    }
+        if (numberToDelete == 2){
+            let response = await axios.patch("http://127.0.0.1:8000/api/meal_planner/1/", {
+           
+            "lunch_id": "00000"
+    
+    }  ,{
+            headers: {
+                Authorization: "Bearer " + token
+            },
+        });
+    }
+        if (numberToDelete == 3){
+            let response = await axios.patch("http://127.0.0.1:8000/api/meal_planner/1/", {
+           
+            "dinner_id": "00000"
+    
+    }  ,{
+            headers: {
+                Authorization: "Bearer " + token
+            },
+        });
+    }
+        getMealPlanner();
+
+    }
+
     return (
         <div>
             {!user ? 
             <p></p>:
             <div>
-                {!mealPlanner[0] && 
+                {mealPlanner[0] == "00000" && 
                 <div>
                     <button>Add Recipe 1 to Meal Planner</button>
                 </div>
                 }
-                {!mealPlanner[1] && 
+                {mealPlanner[1] == "00000" && 
                 <div>
                     <button>Add Recipe 2 to Meal Planner</button>
                 </div>
                 }
-                {!mealPlanner[2] && 
+                {mealPlanner[2] == "00000" && 
                 <div>
                     <button>Add Recipe 3 to Meal Planner</button>
                 </div>
@@ -76,9 +112,9 @@ const MealPlannerPage = (props) => {
                                 <tr>
                                     {mealPlanner.length > 2 ?
                                         <>
-                                        <td>{mealPlanner[0].title}<img className="meal-image" src={mealPlanner[0].image} /></td>
-                                        <td>{mealPlanner[1].title}<img className="meal-image" src={mealPlanner[1].image} /></td>
-                                        <td>{mealPlanner[2].title}<img className="meal-image" src={mealPlanner[2].image} /></td>
+                                        <td>{mealPlanner[0].title}<img className="meal-image" src={mealPlanner[0].image} /><button onClick={deleteFromMeal(1)}>Delete from Meal Planner</button></td>
+                                        <td>{mealPlanner[1].title}<img className="meal-image" src={mealPlanner[1].image} /><button>Delete from Meal Planner</button></td>
+                                        <td>{mealPlanner[2].title}<img className="meal-image" src={mealPlanner[2].image} /><button>Delete from Meal Planner</button></td>
                                         </>:
                                         <td></td>
                                     }
