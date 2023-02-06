@@ -24,17 +24,38 @@ const MealPlannerPage = (props) => {
             }
         });
         setMealData(response.data);
-        mealDataChange(response.data)
+        mealDataChange(mealData)
         console.log("meal Data", response.data)
         console.log("user", user)
     }
 
     async function mealDataChange(mealData){
-            let breakfast = await idToRecipe(mealData[0].breakfast_id)
-            let lunch = await idToRecipe(mealData[0].lunch_id)
-            let dinner = await idToRecipe(mealData[0].dinner_id)
+        let breakfast;
+        let lunch;
+        let dinner;
+        switch(mealData[0].breakfast_id){
+            case "00000":
+                breakfast = "NO RECIPE";
+                break;
+            default:
+                breakfast = await idToRecipe(mealData[0].breakfast_id);
+        }
+        switch(mealData[0].lunch_id){
+            case "00000":
+                lunch = "00000";
+                break;
+            default:
+                lunch = await idToRecipe(mealData[0].breakfast_id);
+        }
+        switch(mealData[0].dinner_id){
+            case "00000":
+                dinner = "00000";
+                break;
+            default:
+                dinner = await idToRecipe(mealData[0].breakfast_id);
+        }
             setMealPlanner([breakfast, lunch, dinner])
-    }
+        }
 
     async function idToRecipe(id){
         let response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=d7a4ab507bb8446f8adbe2de0d7cc7e6`)
@@ -42,7 +63,7 @@ const MealPlannerPage = (props) => {
     }
 
     async function deleteFromMeal(numberToDelete){
-        if (numberToDelete == 1){
+        if (numberToDelete === 1){
         let response = await axios.patch("http://127.0.0.1:8000/api/meal_planner/1/", {
            
             "breakfast_id": "00000"
@@ -53,7 +74,7 @@ const MealPlannerPage = (props) => {
             },
         });
     }
-        if (numberToDelete == 2){
+        if (numberToDelete === 2){
             let response = await axios.patch("http://127.0.0.1:8000/api/meal_planner/1/", {
            
             "lunch_id": "00000"
@@ -64,7 +85,7 @@ const MealPlannerPage = (props) => {
             },
         });
     }
-        if (numberToDelete == 3){
+        if (numberToDelete === 3){
             let response = await axios.patch("http://127.0.0.1:8000/api/meal_planner/1/", {
            
             "dinner_id": "00000"
@@ -84,17 +105,17 @@ const MealPlannerPage = (props) => {
             {!user ? 
             <p></p>:
             <div>
-                {mealPlanner[0] == "00000" && 
+                {mealPlanner[0] === "00000" && 
                 <div>
                     <button>Add Recipe 1 to Meal Planner</button>
                 </div>
                 }
-                {mealPlanner[1] == "00000" && 
+                {mealPlanner[1] === "00000" && 
                 <div>
                     <button>Add Recipe 2 to Meal Planner</button>
                 </div>
                 }
-                {mealPlanner[2] == "00000" && 
+                {mealPlanner[2] === "00000" && 
                 <div>
                     <button>Add Recipe 3 to Meal Planner</button>
                 </div>

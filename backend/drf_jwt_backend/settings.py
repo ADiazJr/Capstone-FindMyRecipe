@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'cars.apps.CarsConfig',
     'favorite_recipes',
-    'meal_planner',
     'shopping_list',
 ]
 

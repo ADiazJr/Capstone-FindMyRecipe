@@ -4,6 +4,6 @@ from authentication.models import User
 
 class Meal_planner(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    breakfast_id = models.CharField(max_length=255)
-    lunch_id = models.CharField(max_length=255)
-    dinner_id = models.CharField(max_length=255)
+    breakfast_id = models.CharField(max_length=255, null=True) 
+    lunch_id = models.CharField(max_length=255, null=True)
+    dinner_id = models.CharField(max_length=255, null=True)
