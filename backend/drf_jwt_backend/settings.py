@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'cars.apps.CarsConfig',
     'favorite_recipes',
     'shopping_list',
+    'meal_planner',
+    'breakfast',
+    'lunch',
+    'dinner',
 ]
 
 MIDDLEWARE = [
