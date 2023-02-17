@@ -120,33 +120,3 @@ const MealPlannerPage = (props) => {
 }
  
 export default MealPlannerPage;
-
-
-
-/* <form onSubmit={handleSubmit}>
-  <label>
-    Meal Name:
-    <input type="text" name="mealName" />
-  </label>
-  <label>
-    Ingredients:
-    <textarea name="ingredients"></textarea>
-  </label>
-  <label>
-    Instructions:
-    <textarea name="instructions"></textarea>
-  </label>
-  <label>
-    Day:
-    <select name="day">
-      <option value="Monday">Monday</option>
-      <option value="Tuesday">Tuesday</option>
-      <option value="Wednesday">Wednesday</option>
-      <option value="Thursday">Thursday</option>
-      <option value="Friday">Friday</option>
-      <option value="Saturday">Saturday</option>
-      <option value="Sunday">Sunday</option>
-    </select>
-  </label>
-  <button type="submit">Add Meal<
-*/
