@@ -3,3 +3,16 @@
     border-radius: 15px;
     width: 500px;
 }
+
+td.empty {
+    background-color: #f1f1f1;
+    text-align: center;
+  }
+  
+  td.empty::before {
+    content: "No recipe selected";
+    display: inline-block;
+    margin-top: 10px;
+    color: #999;
+  }
+  

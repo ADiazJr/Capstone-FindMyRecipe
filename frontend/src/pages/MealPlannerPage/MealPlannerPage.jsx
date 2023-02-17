@@ -46,7 +46,7 @@ const MealPlannerPage = (props) => {
     
 
     async function idToRecipe(id){
-        let response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=d7a4ab507bb8446f8adbe2de0d7cc7e6`)
+        let response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=56dd34702a3a487894f9c09f84c317b8`)
         return response.data
     }
 
@@ -77,82 +77,65 @@ const MealPlannerPage = (props) => {
 
     return (
         <div>
-            {!user ? 
-            <p></p>:
+          {!user ? (
+            <p></p>
+          ) : (
             <div>
-                {!mealPlanner[0] && 
-                <div>
-                    <button>Add Recipe 1 to Meal Planner</button>
-                </div>
-                }
-                {!mealPlanner[1] && 
-                <div>
-                    <button>Add Recipe 2 to Meal Planner</button>
-                </div>
-                }
-                {!mealPlanner[2] && 
-                <div>
-                    <button>Add Recipe 3 to Meal Planner</button>
-                </div>
-                }
-                    <form>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Breakfast</th>
-                                    <th>Lunch</th>
-                                    <th>Dinner</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    {mealPlanner.length > 2 ? (
-                                    <>
-                                        <td>
-                                        {mealPlanner[0] && (
-                                            <>
-                                            {mealPlanner[0].title}
-                                            <img className="meal-image" src={mealPlanner[0].image} />
-                                            <button onClick={() => deleteFromMeal(1)}>
-                                                Delete From Meal Planner
-                                            </button>
-                                            </>
-                                        )}
-                                        </td>
-                                        <td>
-                                        {mealPlanner[1] && (
-                                            <>
-                                            {mealPlanner[1].title}
-                                            <img className="meal-image" src={mealPlanner[1].image} />
-                                            <button onClick={() => deleteFromMeal(2)}>
-                                                Delete From Meal Planner
-                                            </button>
-                                            </>
-                                        )}
-                                        </td>
-                                        <td>
-                                        {mealPlanner[2] && (
-                                            <>
-                                            {mealPlanner[2].title}
-                                            <img className="meal-image" src={mealPlanner[2].image} />
-                                            <button onClick={() => deleteFromMeal(3)}>
-                                                Delete From Meal Planner
-                                            </button>
-                                            </>
-                                        )}
-                                        </td>
-                                    </>
-                                    ) : (
-                                    <td></td>
-                                    )}
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+              <form>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Breakfast</th>
+                      <th>Lunch</th>
+                      <th>Dinner</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      {mealPlanner.length > 2 ? (
+                        <>
+                          <td className={mealPlanner[0] ? "" : "empty"}>
+                            {mealPlanner[0] ? (
+                              <>
+                                {mealPlanner[0].title}
+                                <img className="meal-image" src={mealPlanner[0].image} />
+                              </>
+                            ) : (
+                              ""
+                            )}
+                          </td>
+                          <td className={mealPlanner[1] ? "" : "empty"}>
+                            {mealPlanner[1] ? (
+                              <>
+                                {mealPlanner[1].title}
+                                <img className="meal-image" src={mealPlanner[1].image} />
+                              </>
+                            ) : (
+                              ""
+                            )}
+                          </td>
+                          <td className={mealPlanner[2] ? "" : "empty"}>
+                            {mealPlanner[2] ? (
+                              <>
+                                {mealPlanner[2].title}
+                                <img className="meal-image" src={mealPlanner[2].image} />
+                              </>
+                            ) : (
+                              ""
+                            )}
+                          </td>
+                        </>
+                      ) : (
+                        <td></td>
+                      )}
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
             </div>
-            }
+          )}
         </div>
-      );
+      );      
 }
  
 export default MealPlannerPage;
