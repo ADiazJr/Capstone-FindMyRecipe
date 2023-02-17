@@ -31,13 +31,19 @@ const MealPlannerPage = (props) => {
         console.log(response.data)
         console.log("meal Data", mealData)
     }
-
-    async function mealDataChange(){
-            let breakfast = await idToRecipe(mealData[0].breakfast_id)
-            let lunch = await idToRecipe(mealData[0].lunch_id)
-            let dinner = await idToRecipe(mealData[0].dinner_id)
-            setMealPlanner([breakfast, lunch, dinner])
+    async function mealDataChange() {
+        const breakfastId = mealData[0].breakfast_id;
+        const lunchId = mealData[0].lunch_id;
+        const dinnerId = mealData[0].dinner_id;
+        
+        const recipes = await Promise.all([
+            breakfastId ? idToRecipe(breakfastId) : null,
+            lunchId ? idToRecipe(lunchId) : null,
+            dinnerId ? idToRecipe(dinnerId) : null,
+        ]);
+        setMealPlanner(recipes);
     }
+    
 
     async function idToRecipe(id){
         let response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=d7a4ab507bb8446f8adbe2de0d7cc7e6`)
@@ -100,15 +106,45 @@ const MealPlannerPage = (props) => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    {mealPlanner.length > 2 ?
-                                        <>
-                                        <td>{mealPlanner[0].title}<img className="meal-image" src={mealPlanner[0].image} /><button onClick={() => deleteFromMeal(1)}>Delete From Meal Planner</button></td>
-                                        <td>{mealPlanner[1].title}<img className="meal-image" src={mealPlanner[1].image} /><button onClick={() => deleteFromMeal(2)}>Delete From Meal Planner</button></td>
-                                        <td>{mealPlanner[2].title}<img className="meal-image" src={mealPlanner[2].image} /><button onClick={() => deleteFromMeal(3)}>Delete From Meal Planner</button></td>
-
-                                        </>:
-                                        <td></td>
-                                    }
+                                    {mealPlanner.length > 2 ? (
+                                    <>
+                                        <td>
+                                        {mealPlanner[0] && (
+                                            <>
+                                            {mealPlanner[0].title}
+                                            <img className="meal-image" src={mealPlanner[0].image} />
+                                            <button onClick={() => deleteFromMeal(1)}>
+                                                Delete From Meal Planner
+                                            </button>
+                                            </>
+                                        )}
+                                        </td>
+                                        <td>
+                                        {mealPlanner[1] && (
+                                            <>
+                                            {mealPlanner[1].title}
+                                            <img className="meal-image" src={mealPlanner[1].image} />
+                                            <button onClick={() => deleteFromMeal(2)}>
+                                                Delete From Meal Planner
+                                            </button>
+                                            </>
+                                        )}
+                                        </td>
+                                        <td>
+                                        {mealPlanner[2] && (
+                                            <>
+                                            {mealPlanner[2].title}
+                                            <img className="meal-image" src={mealPlanner[2].image} />
+                                            <button onClick={() => deleteFromMeal(3)}>
+                                                Delete From Meal Planner
+                                            </button>
+                                            </>
+                                        )}
+                                        </td>
+                                    </>
+                                    ) : (
+                                    <td></td>
+                                    )}
                                 </tr>
                             </tbody>
                         </table>
