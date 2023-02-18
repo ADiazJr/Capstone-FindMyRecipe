@@ -94,36 +94,47 @@ const MealPlannerPage = (props) => {
                     <tr>
                       {mealPlanner.length > 2 ? (
                         <>
-                          <td className={mealPlanner[0] ? "" : "empty"}>
-                            {mealPlanner[0] ? (
-                              <>
-                                {mealPlanner[0].title}
+                        <td className={mealPlanner[0] ? "" : "empty"}>
+                        {mealPlanner[0] ? (
+                            <>
+                            <div className="meal-info">
+                                <h3>{mealPlanner[0].title}</h3>
                                 <img className="meal-image" src={mealPlanner[0].image} />
-                              </>
-                            ) : (
-                              ""
-                            )}
-                          </td>
+                            </div>
+                            <button onClick={() => deleteFromMeal(1)}>Delete From Meal Planner</button>
+                            </>
+                        ) : (
+                            ""
+                        )}
+                        </td>
                           <td className={mealPlanner[1] ? "" : "empty"}>
                             {mealPlanner[1] ? (
-                              <>
-                                {mealPlanner[1].title}
-                                <img className="meal-image" src={mealPlanner[1].image} />
-                              </>
+                                <>
+                                <div className="meal-info">
+                                    <h3>{mealPlanner[1].title}</h3>
+                                    <img className="meal-image" src={mealPlanner[1].image} />
+                                </div>
+                                <button onClick={() => deleteFromMeal(2)}>Delete From Meal Planner</button>
+                                </>
                             ) : (
-                              ""
+                                ""
                             )}
-                          </td>
+                            </td>
+
                           <td className={mealPlanner[2] ? "" : "empty"}>
                             {mealPlanner[2] ? (
-                              <>
-                                {mealPlanner[2].title}
-                                <img className="meal-image" src={mealPlanner[2].image} />
-                              </>
+                                <>
+                                <div className="meal-info">
+                                    <h3>{mealPlanner[2].title}</h3>
+                                    <img className="meal-image" src={mealPlanner[2].image} />
+                                </div>
+                                <button onClick={() => deleteFromMeal(3)}>Delete From Meal Planner</button>
+                                </>
                             ) : (
-                              ""
+                                ""
                             )}
-                          </td>
+                            </td>
+
                         </>
                       ) : (
                         <td></td>

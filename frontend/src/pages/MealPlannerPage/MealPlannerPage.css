@@ -15,4 +15,11 @@ td.empty {
     margin-top: 10px;
     color: #999;
   }
+
+  td > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
   
