@@ -1,47 +1,47 @@
 import React, { useState } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
 
-const MealPlannerForm = ({ show, handleClose, handleAddToMealPlan }) => {
-  const [mealType, setMealType] = useState("");
+function MealPlannerForm({ recipe, closeModal, addToMealPlanner }) {
+  const [selectedMeal, setSelectedMeal] = useState("breakfast");
 
-  const handleMealTypeChange = (event) => {
-    setMealType(event.target.value);
-  };
-
-  const handleAddToMealPlanClick = () => {
-    handleAddToMealPlan(mealType);
-    setMealType("");
-    handleClose();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addToMealPlanner(selectedMeal, recipe);
+    closeModal();
   };
 
   return (
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Add to Meal Planner</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
-          <Form.Group controlId="mealType">
-            <Form.Label>Meal Type</Form.Label>
-            <Form.Control as="select" value={mealType} onChange={handleMealTypeChange}>
-              <option value="">Select a meal type</option>
-              <option value="breakfast">Breakfast</option>
-              <option value="lunch">Lunch</option>
-              <option value="dinner">Dinner</option>
-            </Form.Control>
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Cancel
-        </Button>
-        <Button variant="primary" onClick={handleAddToMealPlanClick} disabled={!mealType}>
-          Add to Meal Planner
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <form onSubmit={handleSubmit}>
+      <h2>Add to Meal Planner</h2>
+      <label>
+        <input
+          type="radio"
+          value="breakfast"
+          checked={selectedMeal === "breakfast"}
+          onChange={() => setSelectedMeal("breakfast")}
+        />
+        Breakfast
+      </label>
+      <label>
+        <input
+          type="radio"
+          value="lunch"
+          checked={selectedMeal === "lunch"}
+          onChange={() => setSelectedMeal("lunch")}
+        />
+        Lunch
+      </label>
+      <label>
+        <input
+          type="radio"
+          value="dinner"
+          checked={selectedMeal === "dinner"}
+          onChange={() => setSelectedMeal("dinner")}
+        />
+        Dinner
+      </label>
+      <button type="submit">Add to Meal Planner</button>
+    </form>
   );
-};
+}
 
 export default MealPlannerForm;
