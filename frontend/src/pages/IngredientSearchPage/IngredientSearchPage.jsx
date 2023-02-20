@@ -56,7 +56,7 @@ const IngredientSearchPage = (props) => {
 
 
     return (                                                      
-        <div className="row">
+        <div className="colums-container">
             <div className="column-search">
                 <h3 className="header">Ingredient Search</h3>
                 <p className="directions">Enter Ingredients</p>
@@ -93,10 +93,10 @@ const IngredientSearchPage = (props) => {
                 </form>
                 <button type="button" onClick={searchClick}>Search</button>
             </div>
-            <div className="column">
+            <div>
                 <ul className="ingredient-list">
                     <div className="row-recipes">
-                        <div className="column-recipes">
+                        <div className="column">
                         {recipes.slice(10).map((recipe) => {
                             return(
                                 <li className="list-item">
@@ -108,7 +108,7 @@ const IngredientSearchPage = (props) => {
                             )
                         })}
                         </div>
-                        <div className="column-recipes">
+                        <div className="column">
                         {recipes.slice(0, 10).map((recipe) => {
                             return(
                                 <li className="list-item">
