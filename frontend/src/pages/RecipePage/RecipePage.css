@@ -1,6 +1,8 @@
 .column-ingredients {
+    margin-left: 30rem;
     float: right;
-    width: 50%;
+    width: 45%;
+    margin-right: 3%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -49,8 +51,9 @@
 }
 
 .column-summary{
+    margin-left: 10rem;
     float: right;
-    width: 50%;
+    width: 72%;
 }
 
 .summary{
