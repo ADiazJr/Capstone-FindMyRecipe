@@ -126,6 +126,7 @@
     float: right;
     width: calc(50% - 2rem);
     margin: 4rem 2rem 4rem 0;
+    margin-inline: 80px;
 }
   
 .row-recipes {

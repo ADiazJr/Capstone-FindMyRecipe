@@ -44,7 +44,7 @@ const IngredientSearchPage = (props) => {
 
     console.log(searchList)
     async function ingredient_search(ingredients){
-        let response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&apiKey=d7a4ab507bb8446f8adbe2de0d7cc7e6`)
+        let response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&apiKey=d7a4ab507bb8446f8adbe2de0d7cc7e6&number=20`)
         setRecipes(response.data)
      }
 
