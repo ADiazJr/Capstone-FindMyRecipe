@@ -1,21 +1,21 @@
-.shopping-button{
-    margin-top: 0;
-    border-color: bisque;
+.ingredient {
+  background: #fff;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  box-shadow: 0 14px 32px -24px rgba(17, 24, 39, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
-.ingredient{
-    margin-inline: 110px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    width: 350px;
-    height: 108px;
-    border: solid;
+.ingredient-name,
+.ingredient-amount {
+  font-size: 0.98rem;
 }
 
-.ingredient-name{
-    margin: 5px;
-}
-
-.ingredient-amount{
-    margin: 5px;
+.shopping-button {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+  box-shadow: none;
 }

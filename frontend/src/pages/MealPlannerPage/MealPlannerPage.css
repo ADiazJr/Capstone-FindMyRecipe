@@ -1,25 +1,56 @@
-.meal-image{
-    border: solid 2px #9844b5;
-    border-radius: 15px;
-    width: 500px;
+.meal-planner {
+  padding: 2.5rem clamp(1.2rem, 5vw, 4rem);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 1.2rem;
+}
+
+th {
+  text-align: left;
+  font-size: 1.1rem;
+  color: var(--color-muted);
+  padding-bottom: 0.5rem;
+}
+
+td {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: 0 18px 48px -30px rgba(124, 58, 237, 0.45);
+  border: 1px solid rgba(124, 58, 237, 0.1);
 }
 
 td.empty {
-    background-color: #f1f1f1;
-    text-align: center;
-  }
-  
-  td.empty::before {
-    content: "No recipe selected";
-    display: inline-block;
-    margin-top: 10px;
-    color: #999;
-  }
+  background-color: rgba(249, 250, 251, 0.85);
+  text-align: center;
+  color: var(--color-muted);
+  font-style: italic;
+}
 
-  td > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.meal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+.meal-image {
+  width: 100%;
+  max-width: 360px;
+  border-radius: calc(var(--radius-lg) - 0.6rem);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  box-shadow: 0 14px 32px -24px rgba(17, 24, 39, 0.45);
+}
+
+.meal-planner button {
+  margin-top: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .meal-image {
+    max-width: 280px;
   }
-  
-  
+}
