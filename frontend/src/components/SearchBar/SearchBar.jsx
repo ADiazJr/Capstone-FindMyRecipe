@@ -3,63 +3,68 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "./SearchBar.css";
 
-
 const SearchBar = (props) => {
+  const [user] = useAuth();
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
 
-    const [user] = useAuth();
-    let navigate = useNavigate();
-    const [search, setSearch] = useState("");
+  function handleSubmit(event) {
+    event.preventDefault();
+    const query = search.trim();
+    if (!query) return;
+    props.getRecipes(query);
+  }
 
-    function handleSubmit(event){
-        event.preventDefault();
-        props.getRecipes(search);
-    }
+  function handleIngredientSearch() {
+    navigate("/ingredient_search");
+  }
 
-    function handleClick(event){
-        event.preventDefault();
-        navigate("/ingredient_search");
-    }
+  function handleFavorite() {
+    navigate("/favorite_recipes");
+  }
 
-    function handleFavorite(event){
-        event.preventDefault();
-        navigate("/favorite_recipes");
-    }
+  function handleList() {
+    navigate("/shopping_list");
+  }
 
-    function handleList(event){
-        event.preventDefault();
-        navigate("/shopping_list");
-    }
+  function handleMeal() {
+    navigate("/meal_planner");
+  }
 
-    function handleMeal(event){
-        event.preventDefault();
-        navigate("/meal_planner");
-    }
+  return (
+    <div className="search">
+      <form className="search__form" onSubmit={handleSubmit}>
+        <input
+          className="search__input"
+          placeholder="Search for a recipe"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          aria-label="Search for a recipe"
+        />
+        <button className="search__submit" type="submit">
+          Search
+        </button>
+      </form>
+      <div className="search__links">
+        <button type="button" className="search__chip" onClick={handleIngredientSearch}>
+          Ingredient Search
+        </button>
+        {user && (
+          <div className="search__chip-group">
+            <button type="button" className="search__chip" onClick={handleFavorite}>
+              Favorite Recipes
+            </button>
+            <button type="button" className="search__chip" onClick={handleList}>
+              Shopping List
+            </button>
+            <button type="button" className="search__chip" onClick={handleMeal}>
+              Meal Planner
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
-    return ( 
-        <div className="search">
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div>
-                    <input className="input" placeholder="Search" value={search} onChange={(event) => setSearch(event.target.value)} />
-                    <button className="input-search">►</button>
-                </div>
-            </form>
-            <form>
-                <div>
-                    <button onClick={handleClick}>Ingredient Search</button>
-                </div>
-            </form>
-            {!user ?
-            <p></p>:
-            <form>
-                <div>
-                    <button onClick={handleFavorite}>Favorite Recipes</button>
-                    <button onClick={handleList}>Shopping List</button>
-                    <button onClick={handleMeal}>Meal Planner</button>
-                </div>
-            </form>
-            }
-        </div>
-     );
-}
- 
 export default SearchBar;
